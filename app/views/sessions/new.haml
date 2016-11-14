@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-default
+        .panel-heading 
+          %h3.panel-title Log In
+        .panel-body
+          = form_for login_path do |f|
+            .form-group
+              = f.label :username, 'Username'
+              = f.text_field :username, class: 'form-control', placeholder: 'Enter username'
+            .form-group
+              = f.label :password, 'Password'
+              = f.password_field :password, class: 'form-control', placeholder: 'Enter password'
+            = f.submit 'Log In', class: 'btn btn-block btn-primary'
+          
+
