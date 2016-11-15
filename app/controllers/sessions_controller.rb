@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:session][:email])
+    if user && user.authenticate(params[:session][:password])
       log_in user
       redirect_to dashboard_path
     else
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out user
+    log_out
     redirect_to root_path
   end
 

@@ -5,13 +5,18 @@
         .panel-heading 
           %h3.panel-title Log In
         .panel-body
-          = form_for login_path do |f|
+          = form_for :session, url: login_path do |f|
             .form-group
               = f.label :email, 'Email'
-              = f.text_field :email, class: 'form-control', placeholder: 'Enter email'
+              .input-group
+                %span.input-group-addon @
+                = f.text_field :email, class: 'form-control', placeholder: 'Enter email'
             .form-group
               = f.label :password, 'Password'
-              = f.password_field :password, class: 'form-control', placeholder: 'Enter password'
+              .input-group
+                %span.input-group-addon
+                  %span.glyphicon.glyphicon-lock
+                = f.password_field :password, class: 'form-control', placeholder: 'Enter password'
             = f.submit 'Log In', class: 'btn btn-block btn-primary'
           
 
