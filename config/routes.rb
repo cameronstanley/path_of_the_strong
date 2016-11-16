@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post 'signup', to: 'signup#create'
 
   get 'dashboard', to: 'dashboard#index'
+
+  resources :workouts
 end

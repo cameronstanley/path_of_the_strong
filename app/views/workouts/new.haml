@@ -1,0 +1,14 @@
+.page-header
+  %h1
+    %span.fa.fa-plus
+    New Workout
+
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-body
+        = form_for @workout do |f|
+          .form-group
+            = f.label :name, 'Name'
+            = f.text_field :name, class: 'form-control', placeholder: 'Enter name'
+          = f.submit 'Start Workout', class: 'btn btn-block btn-primary'

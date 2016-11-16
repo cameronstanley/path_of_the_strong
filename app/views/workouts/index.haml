@@ -1,0 +1,22 @@
+.page-header
+  .pull-right
+    = link_to new_workout_path do
+      %span.fa.fa-plus
+      New Workout
+  %h1 
+    %span.fa.fa-heartbeat
+    Workouts
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Date
+      %th Duration
+  %tbody
+    - @workouts.each do |workout|
+      %tr
+        %td
+          = link_to workout.name, workout
+        %td= workout.start_at.strftime('%D')
+        %td= workout.duration
