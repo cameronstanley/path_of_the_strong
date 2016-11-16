@@ -1,0 +1,15 @@
+.page-header
+  .pull-right
+    = link_to edit_workout_path(@workout) do
+      %span.fa.fa-pencil-square-o
+      Edit Workout
+  %h1
+    = "#{@workout.name} Workout"
+    %small= @workout.start_at.strftime('%D')
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h4 Exercises
+      .panel-body

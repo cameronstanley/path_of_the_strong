@@ -1,5 +1,7 @@
 class WorkoutsController < ApplicationController
 
+  before_action :check_logged_in
+
   def index
     @workouts = Workout.where(user_id: current_user.id).order(:start_at)
   end
@@ -9,7 +11,7 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout = Workout.new(name: DateTime.now.strftime('%A')) 
+    @workout = Workout.new(name: DateTime.now.strftime('%A'))
   end
 
   def create
@@ -27,11 +29,9 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-
   end
 
   def destroy
@@ -39,6 +39,12 @@ class WorkoutsController < ApplicationController
     workout.destroy
     flash[:success] = 'Workout was successfully deleted.'
     redirect_to workouts_path
+  end
+
+  private
+
+  def new_workout_params
+    params.require(:workout).permit(:name)
   end
 
 end

@@ -6,14 +6,48 @@
 .row
   .col-md-6
     .panel.panel-default
-      .panel-heading Recent Workouts
-      .panel-body
+      .panel-heading 
+        %h4
+          %span.fa.fa-history
+          Recent Workouts
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Name
+            %th 
+              %span.fa.fa-calendar
+              Date
+            %th 
+              %span.fa.fa-clock-o
+              Duration
+        %tbody
+          - @recent_workouts.each do |workout|
+            %tr
+              %td= link_to workout.name, workout
+              %td= workout.start_at.strftime('%D')
+              %td= workout.duration
+      .panel-footer.text-center
+        = link_to new_workout_path, class: 'btn btn-block btn-primary' do
+          %span.fa.fa-plus
+          New Workout
+
   .col-md-6
     .panel.panel-default
-      .panel-heading Targets
-      .panel-body
+      .panel-heading 
+        %h4
+          %span.fa.fa-bullseye
+          Goals
+      .panel-body.text-center
+        %h4.text-muted No Goals Set
+        %p Start tracking your goals and seeing results today!
+        = link_to 'Set First Goal', '#', class: 'btn btn-success'
+
 .row
   .col-md-12
     .panel.panel-default
-      .panel-heading Progress
+      .panel-heading 
+        %h4
+          %span.fa.fa-line-chart
+          Progress
       .panel-body
+        = column_chart Workout.where(user_id: current_user.id).group(:name).count

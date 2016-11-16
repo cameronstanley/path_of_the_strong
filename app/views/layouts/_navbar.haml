@@ -7,6 +7,11 @@
         %span.icon-bar 
         %span.icon-bar 
       = link_to 'Workout Tracker', dashboard_path, class: 'navbar-brand'
+    - if !logged_in?
+      %ul.navbar-form.navbar-right
+        = link_to login_path, class: 'btn btn-default' do
+          %span.fa.fa-sign-in
+          Log In
     - if logged_in?
       #navbar-collapse.collapse.navbar-collapse
         %ul.nav.navbar-nav
@@ -18,12 +23,17 @@
             = link_to workouts_path do
               %span.fa.fa-heartbeat
               Workouts
+          %li
+            = link_to '' do
+              %span.fa.fa-list-alt
+              Routines
         %ul.navbar-form.navbar-right
           = link_to logout_path, method: :delete, class: 'btn btn-default' do
             %span.fa.fa-sign-out
             Log Out
         %ul.nav.navbar-nav.navbar-right
-          %p.navbar-text
-            %span.fa.fa-user
-            Welcome,
-            = current_user.first_name
+          %li
+            %p.navbar-text
+              %span.fa.fa-user
+              Welcome,
+              = link_to current_user.first_name, profile_path
