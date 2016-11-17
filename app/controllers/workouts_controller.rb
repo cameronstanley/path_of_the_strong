@@ -30,6 +30,8 @@ class WorkoutsController < ApplicationController
 
   def edit
     @workout = Workout.find_by(id: params[:id], user_id: current_user.id)
+    @exercise = Exercise.new
+    @movements = Movement.all
   end
 
   def update

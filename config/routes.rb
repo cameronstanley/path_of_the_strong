@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
 
   # Workouts
-  resources :workouts
+  resources :workouts do
+    resources :exercises, only: [:create, :destroy] do
+      resources :work_sets, only: [:create, :update, :destroy]
+    end
+  end
 end

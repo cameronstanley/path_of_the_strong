@@ -1,0 +1,40 @@
+.page-header
+  %h1
+    = "#{@workout.name} Workout"
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h4 New Exercise
+      .panel-body
+        = form_for [@workout, Exercise.new] do |f|
+          .form-group
+            = f.label :movement, 'Movement'
+            = f.select :movement_id, @movements.collect { |m| [ m.name, m.id ] }, {}, class: 'form-control'
+          = f.submit 'Save', class: 'btn btn-md btn-primary'
+
+    - @workout.exercises.each do |exercise|
+      .panel.panel-default
+        .panel-heading
+          %h4= exercise.movement.name
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Set
+              %th Repetitions
+              %th Weight
+              %th
+          %tbody
+            - exercise.work_sets.each_with_index do |work_set, index|
+              %tr
+                %td Set ##{index + 1}
+                %td= work_set.repetitions
+                %td= work_set.weight
+                %td
+            %tr
+              = form_for [@workout, exercise, WorkSet.new] do |f|
+                %td Set ##{exercise.work_sets.count + 1}
+                %td= f.text_field :repetitions, class: 'form-control', placeholder: 'Enter repetitions'
+                %td= f.text_field :weight, class: 'form-control', placeholder: 'Enter weight'
+                %td= f.submit 'Save', class: 'btn btn-block btn-primary'
