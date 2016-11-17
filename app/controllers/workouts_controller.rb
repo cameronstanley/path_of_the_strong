@@ -23,15 +23,25 @@ class WorkoutsController < ApplicationController
       flash[:success] = 'Workout was successfully created.'
       redirect_to edit_workout_path(@workout)
     else
-      flash.new[:error] = 'An error occurred. Please correct the issues on the form and resubmit.'
+      flash.now[:error] = 'An error occurred. Please correct the issues on the form and resubmit.'
       render :new
     end
   end
 
   def edit
+    @workout = Workout.find_by(id: params[:id], user_id: current_user.id)
   end
 
   def update
+    @workout = Workout.find_by(id: params[:id], user_id: current_user.id)
+
+    if @workout.update(edit_workout_params)
+      flash[:success] = 'Workout was successfully updated.'
+      redirect_to edit_workout_path(@workout)
+    else
+      flash.now[:error] = 'An error occurred. Please correct the issues on the form and resubmit.'
+      render :edit
+    end
   end
 
   def destroy
@@ -46,5 +56,11 @@ class WorkoutsController < ApplicationController
   def new_workout_params
     params.require(:workout).permit(:name)
   end
+
+  def edit_workout_params
+    params.require(:workout).permit(:name, :start_at, :end_at)
+  end
+
+
 
 end
