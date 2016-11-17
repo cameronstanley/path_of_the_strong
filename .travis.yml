@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.3.1
+services:
+  - postgresql
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database workout_tracker_test;' -U postgres
