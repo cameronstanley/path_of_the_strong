@@ -14,3 +14,21 @@
       .panel-heading
         %h4 Exercises
       .panel-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Work Set #
+              %th Repetitions
+              %th Weight
+          %tbody
+            - @workout.exercises.each do |exercise|
+              %tr
+                %td{colspan: 3}
+                  %strong= exercise.movement.name
+              - exercise.work_sets.each_with_index do |work_set, index|
+                %tr
+                  %td Work Set ##{index + 1}
+                  %td= work_set.repetitions
+                  %td= work_set.weight
+              %tr
+                %td{colspan: 3}
