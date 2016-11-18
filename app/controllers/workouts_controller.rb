@@ -10,10 +10,6 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find_by(id: params[:id], user_id: current_user.id)
   end
 
-  def new
-    @workout = Workout.new(name: DateTime.now.strftime('%A'))
-  end
-
   def create
     @workout = Workout.new(new_workout_params)
     @workout.user = current_user
@@ -24,7 +20,7 @@ class WorkoutsController < ApplicationController
       redirect_to edit_workout_path(@workout)
     else
       flash.now[:error] = 'An error occurred. Please correct the issues on the form and resubmit.'
-      render :new
+      render :index
     end
   end
 

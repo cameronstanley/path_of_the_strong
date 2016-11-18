@@ -1,0 +1,18 @@
+#newExerciseModal.modal.fade{tabindex: "-1", role: 'dialog', aria: {labelledby: 'newExerciseModalLabel'}}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      = form_for [@workout, Exercise.new] do |f|
+        .modal-header
+          %button{type: 'button', class: 'close', data: {dismiss: 'modal'}, aria: {label: 'Close'}}
+            %span{aria: {hidden: true}} 
+              &times;
+          %h4 
+            %span.fa.fa-plus
+            Add Exercise
+        .modal-body
+          .form-group
+            = f.label :movement, 'Movement'
+            = f.select :movement_id, @movements.collect { |m| [ m.name, m.id ] }, {}, class: 'form-control'
+        .modal-footer
+          %button{type: 'button', class: 'btn btn-default', data: {dismiss: 'modal'}} Close
+          = f.submit 'Add Exercise', class: 'btn btn-md btn-primary'

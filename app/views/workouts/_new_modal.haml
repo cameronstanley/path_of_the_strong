@@ -1,0 +1,18 @@
+#newWorkoutModal.modal.fade{tabindex: "-1", role: 'dialog', aria: {labelledby: 'newWorkoutModalLabel'}}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      = form_for Workout.new(name: DateTime.now.strftime('%A')) do |f|
+        .modal-header
+          %button{type: 'button', class: 'close', data: {dismiss: 'modal'}, aria: {label: 'Close'}}
+            %span{aria: {hidden: true}} 
+              &times;
+          %h4 
+            %span.fa.fa-plus
+            New Workout
+        .modal-body
+          .form-group
+            = f.label :name, 'Name'
+            = f.text_field :name, class: 'form-control', placeholder: 'Enter name'
+        .modal-footer
+          %button{type: 'button', class: 'btn btn-default', data: {dismiss: 'modal'}} Close
+          = f.submit 'Start Workout', class: 'btn btn-md btn-primary'

@@ -1,3 +1,5 @@
+= render partial: 'workouts/new_modal'
+
 .page-header
   %h1 
     %span.fa.fa-tachometer
@@ -27,7 +29,7 @@
               %td= workout.start_at.strftime('%D')
               %td= workout.duration
       .panel-footer.text-center
-        = link_to new_workout_path, class: 'btn btn-block btn-primary' do
+        %button{type: 'button', class: 'btn btn-md btn-primary', data: {toggle: 'modal', target: '#newWorkoutModal'}}
           %span.fa.fa-plus
           New Workout
 

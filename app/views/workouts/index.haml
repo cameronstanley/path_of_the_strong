@@ -1,6 +1,8 @@
+= render partial: 'workouts/new_modal'
+
 .page-header
   .pull-right
-    = link_to new_workout_path do
+    %button{type: 'button', class: 'btn btn-md btn-primary', data: {toggle: 'modal', target: '#newWorkoutModal'}}
       %span.fa.fa-plus
       New Workout
   %h1 
