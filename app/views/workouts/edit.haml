@@ -1,23 +1,17 @@
 .page-header
+  .pull-right
+    %button{type: 'button', class: 'btn btn-md btn-primary', data: {toggle: 'modal', target: '#newExerciseModal'}}
+      %span.fa.fa-plus
+      Add Exercise
   %h1
     = "#{@workout.name} Workout"
 
 .row
   .col-md-12
-    .panel.panel-default
-      .panel-heading
-        %h4 New Exercise
-      .panel-body
-        = form_for [@workout, Exercise.new] do |f|
-          .form-group
-            = f.label :movement, 'Movement'
-            = f.select :movement_id, @movements.collect { |m| [ m.name, m.id ] }, {}, class: 'form-control'
-          = f.submit 'Save', class: 'btn btn-md btn-primary'
-
     - @workout.exercises.each do |exercise|
       .panel.panel-default
         .panel-heading
-          %h4= exercise.movement.name
+          %strong= exercise.movement.name
         %table.table.table-striped
           %thead
             %tr
@@ -25,16 +19,47 @@
               %th Repetitions
               %th Weight
               %th
+              %th
           %tbody
             - exercise.work_sets.each_with_index do |work_set, index|
               %tr
-                %td Set ##{index + 1}
-                %td= work_set.repetitions
-                %td= work_set.weight
-                %td
+                = form_for [@workout, exercise, work_set] do |f|
+                  %td Set ##{index + 1}
+                  %td= f.text_field :repetitions, class: 'form-control', placeholder: 'Enter repetitions'
+                  %td= f.text_field :weight, class: 'form-control', placeholder: 'Enter weight'
+                  %td
+                    %button{type: 'submit', class: 'btn btn-block btn-default'}
+                      %span.fa.fa-pencil-square-o 
+                      Update
+                  %td
+                    = link_to workout_exercise_work_set_path(@workout, exercise, work_set), method: :delete, class: 'btn btn-block btn-danger' do
+                      %span.fa.fa-times
+                      Remove
             %tr
               = form_for [@workout, exercise, WorkSet.new] do |f|
                 %td Set ##{exercise.work_sets.count + 1}
                 %td= f.text_field :repetitions, class: 'form-control', placeholder: 'Enter repetitions'
                 %td= f.text_field :weight, class: 'form-control', placeholder: 'Enter weight'
-                %td= f.submit 'Save', class: 'btn btn-block btn-primary'
+                %td{colspan: 2}
+                  %button{type: 'submit', class: 'btn btn-block btn-primary'}
+                    %span.fa.fa-floppy-o
+                    Save
+
+#newExerciseModal.modal.fade{tabindex: "-1", role: 'dialog', aria: {labelledby: 'newExerciseModalLabel'}}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      = form_for [@workout, Exercise.new] do |f|
+        .modal-header
+          %button{type: 'button', class: 'close', data: {dismiss: 'modal'}, aria: {label: 'Close'}}
+            %span{aria: {hidden: true}} 
+              &times;
+          %h4 
+            %span.fa.fa-plus
+            Add Exercise
+        .modal-body
+          .form-group
+            = f.label :movement, 'Movement'
+            = f.select :movement_id, @movements.collect { |m| [ m.name, m.id ] }, {}, class: 'form-control'
+        .modal-footer
+          %button{type: 'button', class: 'btn btn-default', data: {dismiss: 'modal'}} Close
+          = f.submit 'Add Exercise', class: 'btn btn-md btn-primary'

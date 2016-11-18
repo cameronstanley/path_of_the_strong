@@ -17,6 +17,13 @@ class WorkSetsController < ApplicationController
     end
   end
 
+  def destroy
+    @work_set = WorkSet.find_by(id: params[:id], exercise_id: @exercise.id)
+    @work_set.destroy
+    flash[:success] = 'Set was successfully removed.'
+    redirect_to edit_workout_path(@workout)
+  end
+
   private
 
   def get_workout
