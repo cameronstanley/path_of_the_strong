@@ -23,3 +23,5 @@
             = link_to workout.name, workout
           %td= workout.start_at.strftime('%D')
           %td= workout.duration
+  .panel-footer.text-center
+    = will_paginate @workouts

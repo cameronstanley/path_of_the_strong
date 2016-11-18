@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
   before_action :check_logged_in
 
   def index
-    @workouts = Workout.where(user_id: current_user.id).order(:start_at)
+    @workouts = Workout.where(user_id: current_user.id).order(:start_at).paginate(page: params[:page], per_page: 10)
   end
 
   def show

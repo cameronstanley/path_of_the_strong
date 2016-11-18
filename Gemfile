@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-will_paginate'
 gem 'bcrypt', '~> 3.1.7'
 gem 'chartkick'
 gem 'font-awesome-rails'
@@ -12,6 +13,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platform: :mri
