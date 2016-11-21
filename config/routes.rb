@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Profile
   get 'profile', to: 'profile#index'
+  put 'profile', to: 'profile#update'
 
   # Dashboard
   get 'dashboard', to: 'dashboard#index'

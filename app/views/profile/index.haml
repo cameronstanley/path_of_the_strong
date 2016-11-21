@@ -2,3 +2,31 @@
   %h1
     %span.fa.fa-user
     My Profile
+
+.panel.panel-default
+  .panel-body
+    = form_for @profile, as: :profile, url: profile_path(@profile), method: :put do |f|
+      .form-group
+        = f.label :first_name, 'First Name'
+        = f.text_field :first_name, class: 'form-control', placeholder: 'Enter first name'
+      .form-group
+        = f.label :last_name, 'Last Name'
+        = f.text_field :last_name, class: 'form-control', placeholder: 'Enter last name'
+      .form-group
+        = f.label :email, 'Email'
+        .input-group
+          %span.input-group-addon @
+          = f.text_field :email, class: 'form-control', placeholder: 'Enter email'
+      .form-group
+        = f.label :password, 'Password'
+        .input-group
+          %span.input-group-addon
+            %span.fa.fa-lock
+          = f.password_field :password, class: 'form-control', placeholder: 'Enter password'
+      .form-group
+        = f.label :password_confirmation, 'Password Confirmation'
+        .input-group
+          %span.input-group-addon
+            %span.fa.fa-lock
+          = f.password_field :password_confirmatio, class: 'form-control', placeholder: 'Enter password confirmation'
+      = f.submit 'Update Profile', class: 'btn btn-block btn-primary'
