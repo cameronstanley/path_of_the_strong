@@ -23,15 +23,18 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
   gem 'codeclimate-test-reporter', '~> 1.0.0'
+  gem 'database_cleaner'
+  gem 'poltergeist'
   gem 'simplecov'
 end
 
 group :development do
-  gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
