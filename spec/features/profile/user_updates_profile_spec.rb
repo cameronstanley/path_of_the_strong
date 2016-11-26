@@ -1,8 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature 'User updates profile' do
-
-  given!(:user) { create(:user, first_name: 'Will', last_name: 'Barrow', email: 'wbarrow@example.com', password: 'Password') }
+  given!(:user) do
+    create(
+      :user, 
+      first_name: 'Will', 
+      last_name: 'Barrow', 
+      email: 'wbarrow@example.com', 
+      password: 'Password'
+    ) 
+  end
 
   background do
     log_in_user('wbarrow@example.com', 'Password')
@@ -22,7 +29,7 @@ RSpec.feature 'User updates profile' do
 
     expect(current_path).to eq(profile_path)
     expect(page).to have_text('Profile was successfully updated.')
-    
+ 
     updated_user = User.find(user.id)
 
     expect(updated_user.first_name).to eq('Max')
@@ -30,5 +37,4 @@ RSpec.feature 'User updates profile' do
     expect(updated_user.email).to eq('mconversion@example.com')
     expect(updated_user.authenticate('UpdatedPassword')).to_not eq(false)
   end
-
 end

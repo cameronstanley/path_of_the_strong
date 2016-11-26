@@ -1,5 +1,4 @@
 class WorkoutsController < ApplicationController
-
   before_action :check_logged_in
 
   def index
@@ -58,7 +57,4 @@ class WorkoutsController < ApplicationController
   def edit_workout_params
     params.require(:workout).permit(:name, :start_at, :end_at)
   end
-
-
-
 end

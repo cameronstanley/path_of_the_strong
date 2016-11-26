@@ -3,10 +3,10 @@ class Workout < ApplicationRecord
   has_many :exercises
 
   def duration
-    if self.start_at.nil? || self.end_at.nil?
+    if start_at.nil? || end_at.nil?
       'Not completed'
     else
-      distance_of_time_in_words(self.start_at, self.end_at)
+      distance_of_time_in_words(start_at, end_at)
     end
   end
 end
