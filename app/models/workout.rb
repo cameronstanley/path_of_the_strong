@@ -1,4 +1,6 @@
 class Workout < ApplicationRecord
+  include ActionView::Helpers::DateHelper
+
   belongs_to :user
   has_many :exercises
 
