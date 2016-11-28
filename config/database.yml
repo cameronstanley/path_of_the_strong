@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: workout_tracker_development
+  database: path_of_the_strong_development
   pool: 5
   username: 
   password:
@@ -41,15 +41,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: workout_tracker_test
+  database: path_of_the_strong_test
   pool: 5
-  username: workout_tracker 
+  username: path_of_the_strong 
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: workout_tracker_production
+  database: path_of_the_strong_production
   pool: 5
-  username: workout_tracker
+  username: path_of_the_strong
   password:

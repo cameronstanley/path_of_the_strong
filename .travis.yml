@@ -5,7 +5,7 @@ services:
   - postgresql
 before_script:
   - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database workout_tracker_test;' -U postgres
+  - psql -c 'create database path_of_the_strong_test;' -U postgres
 addons:
   code_climate:
     repo_token: c9522f1d9fb9e4486a522e82840bb41c8fff7377acfd7027ce89fc227b17b9d4

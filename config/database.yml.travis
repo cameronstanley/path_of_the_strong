@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: workout_tracker_development
+  database: path_of_the_strong_development
 
 test:
   <<: *default
-  database: workout_tracker_test
+  database: path_of_the_strong_test
   username: postgres
