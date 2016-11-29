@@ -7,18 +7,22 @@
         %span.icon-bar 
         %span.icon-bar 
       = link_to 'Path of the Strong', dashboard_path, class: 'navbar-brand'
-    - if !logged_in?
-      %ul.navbar-form.navbar-right
-        = link_to login_path, class: 'btn btn-default' do
-          %span.fa.fa-sign-in
-          Log In
-    - if logged_in?
-      #navbar-collapse.collapse.navbar-collapse
+    #navbar-collapse.collapse.navbar-collapse
+      - if !logged_in?
+        %ul.navbar-form.navbar-right
+          = link_to login_path, class: 'btn btn-default' do
+            %span.fa.fa-sign-in
+            Log In
+      - if logged_in?
         %ul.nav.navbar-nav
           %li
             = link_to dashboard_path do
               %span.fa.fa-dashboard
               Dashboard
+          %li
+            = link_to measurements_path do
+              %span.fa.fa-stethoscope
+              Measurements
           %li
             = link_to workouts_path do
               %span.fa.fa-heartbeat

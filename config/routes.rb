@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # Dashboard
   get 'dashboard', to: 'dashboard#index'
 
+  # Measurements
+  resources :measurements, only: [:index, :create, :update, :destroy]
+
   # Workouts
   resources :workouts, only: [:index, :show, :create, :edit, :update, :destroy] do
     resources :exercises, only: [:create, :destroy] do
